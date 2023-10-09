@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  pythondeployment
+  namespace: default
+  labels:
+    app:  pythonapp
+spec:
+  selector:
+    matchLabels:
+      app: pythonapp
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  pythonapp
+    spec:
+      containers:
+      - name:  pythoncontainer
+        image:  pedropinguelli/py:1.0 #pode utilizar essa imagem deixei pública :)
+        ports:
+          - containerPort: 4000
+        envFrom:
+          - configMapRef:
+             name: cm     
+#caso a chave que voce utilize no código não corresponda a chave que está definida no configmap, voce pode utilizar esse trecho para utilizar somente o valor
+##      env:
+##        - name: variavel-de-ambiente-utilizada-no-codigo
+##          valueFrom:
+##              configMapKeyRef:
+##                name: nome-do-seu-configmap 
+##                key: chave-definida-configmap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pytonservice
+spec:
+  selector:
+    app: pythonapp
+  ports:
+  # essa porta é a que ele recebe
+    - port: 80
+    # essa porta é a que ele passa pro pod
+      targetPort: 4000
+  type: LoadBalancer

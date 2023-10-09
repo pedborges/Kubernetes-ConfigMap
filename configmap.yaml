@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm
+  namespace: default
+data:
+  frase1: eu
+  frase2: sou
+  frase3: foda
