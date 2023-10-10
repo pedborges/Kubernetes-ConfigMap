@@ -4,6 +4,6 @@ metadata:
   name: cm
   namespace: default
 data:
-  frase1: eu
-  frase2: sou
-  frase3: foda
+  frase1: ono
+  frase2: mato
+  frase3: peia
