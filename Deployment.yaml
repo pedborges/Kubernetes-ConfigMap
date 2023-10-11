@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name:  pythoncontainer
-        image:  pedropinguelli/py:1.0 #pode utilizar essa imagem deixei pública :)
+        image:  pedropinguelli/py:3.0 #pode utilizar essa imagem deixei pública :)
         ports:
           - containerPort: 4000
         envFrom:
